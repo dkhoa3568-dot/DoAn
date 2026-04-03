@@ -19,9 +19,13 @@ import secrets
 # from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionResponse, CheckoutStatusResponse, CheckoutSessionRequest
 import asyncio
 
-mongo_url = os.environ['MONGO_URL']
+mongo_url = os.environ.get("MONGO_URL")
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db_name = os.environ.get("DB_NAME")
+if not db_name:
+    raise Exception("Missing DB_NAME")
+
+db = client[db_name]
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
@@ -479,8 +483,8 @@ async def update_cart_quantity(cart_item_id: str, quantity: int, user: dict = De
 class CheckoutRequest(BaseModel):
     origin_url: str
 
-@api_router.post("/checkout")
-async def create_checkout(input: CheckoutRequest, user: dict = Depends(get_authenticated_user)):
+# @api_router.post("/checkout")
+# async def create_checkout(input: CheckoutRequest, user: dict = Depends(get_authenticated_user)):
     cart_items = await db.cart_items.find({"user_id": user["user_id"]}, {"_id": 0}).to_list(100)
     if not cart_items:
         raise HTTPException(status_code=400, detail="Cart is empty")
@@ -506,7 +510,7 @@ async def create_checkout(input: CheckoutRequest, user: dict = Depends(get_authe
         }
     )
     
-    session = await stripe_checkout.create_checkout_session(checkout_request)
+    # session = await stripe_checkout.create_checkout_session(checkout_request)
     
     order_id = f"order_{uuid.uuid4().hex[:12]}"
     await db.payment_transactions.insert_one({
@@ -533,7 +537,7 @@ async def create_checkout(input: CheckoutRequest, user: dict = Depends(get_authe
     
     return {"url": session.url, "session_id": session.session_id}
 
-@api_router.get("/checkout/status/{session_id}")
+# @api_router.get("/checkout/status/{session_id}")
 async def get_checkout_status(session_id: str, user: dict = Depends(get_authenticated_user)):
     transaction = await db.payment_transactions.find_one({"session_id": session_id}, {"_id": 0})
     if not transaction:
@@ -567,7 +571,7 @@ async def get_checkout_status(session_id: str, user: dict = Depends(get_authenti
         "currency": status.currency
     }
 
-@api_router.post("/webhook/stripe")
+# @api_router.post("/webhook/stripe")
 async def stripe_webhook(request: Request):
     body = await request.body()
     signature = request.headers.get("Stripe-Signature")
