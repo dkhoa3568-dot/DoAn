@@ -172,8 +172,12 @@ async def seed_admin():
 - GET /api/auth/google/me
 """
     
-    Path("/app/memory").mkdir(exist_ok=True)
-    Path("/app/memory/test_credentials.md").write_text(credentials_content)
+BASE_DIR = Path(__file__).parent
+
+memory_path = BASE_DIR / "memory"
+memory_path.mkdir(exist_ok=True)
+
+(memory_path / "test_credentials.md").write_text(credentials_content)
 
 async def seed_products():
     count = await db.products.count_documents({})
