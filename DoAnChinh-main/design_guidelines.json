@@ -1,0 +1,78 @@
+{
+  "theme": {
+    "archetype": "Archetype 5 (Jewel & Luxury / Premium Tech Dark)",
+    "mode": "dark",
+    "description": "Cinematic, expensive, moody, frictionless. Focus on titanium, deep space blacks, and optical clarity glassmorphism to sell a premium tech device."
+  },
+  "colors": {
+    "background": "#050505",
+    "surface": "#0A0A0A",
+    "surface_glass": "rgba(10, 10, 10, 0.6)",
+    "border": "rgba(255, 255, 255, 0.1)",
+    "text_primary": "#F5F5F7",
+    "text_secondary": "#A1A1A6",
+    "accent": "#FFFFFF",
+    "accent_hover": "#E5E5E5",
+    "danger": "#FF3B30",
+    "success": "#30D158"
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Cabinet Grotesk",
+      "body": "Manrope",
+      "mono": "JetBrains Mono",
+      "import_instructions": "Import Cabinet Grotesk via Fontshare CDN and Manrope via Google Fonts."
+    },
+    "rules": {
+      "h1": "text-5xl sm:text-6xl tracking-tighter font-medium",
+      "h2": "text-3xl sm:text-4xl tracking-tight font-medium",
+      "body": "text-base tracking-normal leading-relaxed text-[#A1A1A6]",
+      "overline": "text-xs tracking-[0.2em] uppercase font-semibold text-[#F5F5F7]"
+    }
+  },
+  "layout": {
+    "spacing_scale": "p-2, p-4, p-8, p-12, p-24, p-32",
+    "marketing_grid": "Bento Grid (Mode A) - Asymmetric, gap-8 to gap-12. Large hero spanning multiple rows for showcasing the iPhone.",
+    "dashboard_grid": "Control Room Grid (Mode B) - gap-4, precise metrics alignment, border-collapse styles for Admin/Inventory.",
+    "container": "max-w-7xl mx-auto px-6 md:px-12",
+    "mobile_constraints": "Images MUST NOT exceed 80vh on mobile devices."
+  },
+  "surfaces_and_components": {
+    "glassmorphism": "backdrop-blur-2xl bg-black/60 border-b border-white/10 (Use for sticky navs, floating action bars, and cart overlays).",
+    "cards": "bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden hover:bg-white/[0.04] transition-colors duration-300.",
+    "buttons": "rounded-full px-6 py-3 font-medium transition-all. Primary: bg-white text-black hover:bg-neutral-200. Secondary: bg-white/10 text-white hover:bg-white/20.",
+    "inputs": "Shadcn based. Customize to bg-white/5 border border-white/10 rounded-xl focus:border-white focus:ring-1 focus:ring-white/50."
+  },
+  "motion_and_interactions": {
+    "scroll": "MANDATORY: Lenis smooth scrolling for a premium, weighty feel. This is non-negotiable for a high-end tech site.",
+    "hover": "Subtle scale-up (scale-[1.02]) for bento cards. Text color shifts to pure white on active states.",
+    "animations": "Framer motion staggered fade-up for product grids. Scrollytelling triggers for high-res images to create cinematic entrances."
+  },
+  "assets": {
+    "icons": "@phosphor-icons/react (Use Duotone or Light weight for a premium, refined feel)",
+    "images": {
+      "hero_product": "https://static.prod-images.emergentagent.com/jobs/a4d3fad4-3db0-44f5-a5ce-de38fedecc5b/images/2c1c50bdfe2bbb379e252e56a91233f62daf65090440c5a8b686e9439567fd4e.png",
+      "abstract_texture": "https://static.prod-images.emergentagent.com/jobs/a4d3fad4-3db0-44f5-a5ce-de38fedecc5b/images/e5eaa33f5e947219e716023e56fbd1f25ba2a54b8bd2cea53fad0b372eba9c91.png",
+      "lifestyle_shot": "https://static.prod-images.emergentagent.com/jobs/a4d3fad4-3db0-44f5-a5ce-de38fedecc5b/images/6846aceba2dca2ef1e353ebb8766d363ea56df642ce76a38bd121991e29ff052.png",
+      "iphone_close_up": "https://images.unsplash.com/photo-1727079525588-4638ea8301e0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHw0fHxpcGhvbmUlMjBwcm8lMjBtYXh8ZW58MHx8fHwxNzc1MjM5NzgxfDA&ixlib=rb-4.1.0&q=85",
+      "iphone_dual": "https://images.unsplash.com/photo-1727079513748-d03e7b8c8947?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwzfHxpcGhvbmUlMjBwcm8lMjBtYXh8ZW58MHx8fHwxNzc1MjM5NzgxfDA&ixlib=rb-4.1.0&q=85",
+      "iphone_box": "https://images.unsplash.com/photo-1710023038502-ba80a70a9f53?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHxpcGhvbmUlMjBwcm8lMjBtYXh8ZW58MHx8fHwxNzc1MjM5NzgxfDA&ixlib=rb-4.1.0&q=85"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install and use 'lenis' for smooth scrolling.",
+    "Use '@phosphor-icons/react' for icons.",
+    "Build the landing/product pages with custom HTML/Tailwind to create overlapping bento grids and heavy scrollytelling. Do not rely heavily on standard Shadcn 'Card' components for the creative marketing layouts.",
+    "For Checkout, Admin Dashboard, and User Orders, heavily utilize customized Shadcn UI components (Forms, Tables, Dialogs) but strip out the generic Vercel aesthetic to match the dark titanium theme.",
+    "Make sure all interactive elements include 'data-testid' (e.g., data-testid='add-to-cart-button', data-testid='checkout-form-submit').",
+    "Use pure white text for primary headings and muted gray (#A1A1A6) for paragraphs. No purple/teal gradients anywhere.",
+    "Do not use generic Inter font for headings; use Cabinet Grotesk for a premium tech vibe.",
+    "Ensure dark mode is the default and ONLY mode.",
+    "Write ALL components in .jsx or .js, NOT .tsx.",
+    "Follow the 'Universal Design Rules' strictly: nested radii, hue consistency, accessible contrasts."
+  ],
+  "accessibility_and_testing": {
+    "contrast": "Ensure pure white text on #050505 passes APCA standards.",
+    "test_ids": "Required on all buttons, forms, and key informational elements. Kebab-case, role-based."
+  }
+}
