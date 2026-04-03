@@ -120,7 +120,9 @@ async def get_authenticated_user(request: Request) -> dict:
 async def seed_admin():
     admin_email = os.environ.get("ADMIN_EMAIL", "admin@iphonestore.com").lower()
     admin_password = os.environ.get("ADMIN_PASSWORD", "admin123")
+
     existing = await db.users.find_one({"email": admin_email}, {"_id": 0})
+
     if existing is None:
         user_id = f"user_{uuid.uuid4().hex[:12]}"
         hashed = hash_password(admin_password)
@@ -132,11 +134,16 @@ async def seed_admin():
             "role": "admin",
             "created_at": datetime.now(timezone.utc)
         })
+
     elif not verify_password(admin_password, existing["password_hash"]):
-        await db.users.update_one({"email": admin_email}, {"$set": {"password_hash": hash_password(admin_password)}})
-    
+        await db.users.update_one(
+            {"email": admin_email},
+            {"$set": {"password_hash": hash_password(admin_password)}}
+        )
+
     test_user_email = "test@iphonestore.com"
     test_user = await db.users.find_one({"email": test_user_email}, {"_id": 0})
+
     if not test_user:
         user_id = f"user_{uuid.uuid4().hex[:12]}"
         await db.users.insert_one({
@@ -147,7 +154,8 @@ async def seed_admin():
             "role": "user",
             "created_at": datetime.now(timezone.utc)
         })
-    
+
+    # ✅ PHẦN NÀY PHẢI Ở TRONG HÀM
     credentials_content = f"""# Test Credentials for iPhone Store
 
 ## Admin Account
@@ -159,25 +167,13 @@ async def seed_admin():
 - Email: test@iphonestore.com
 - Password: test123
 - Role: user
-
-## Auth Endpoints
-- POST /api/auth/register
-- POST /api/auth/login
-- GET /api/auth/me
-- POST /api/auth/logout
-- POST /api/auth/refresh
-- POST /api/auth/forgot-password
-- POST /api/auth/reset-password
-- POST /api/auth/google/session
-- GET /api/auth/google/me
 """
-    
-BASE_DIR = Path(__file__).parent
 
-memory_path = BASE_DIR / "memory"
-memory_path.mkdir(exist_ok=True)
+    BASE_DIR = Path(__file__).parent
+    memory_path = BASE_DIR / "memory"
+    memory_path.mkdir(exist_ok=True)
 
-(memory_path / "test_credentials.md").write_text(credentials_content)
+    (memory_path / "test_credentials.md").write_text(credentials_content)
 
 async def seed_products():
     count = await db.products.count_documents({})
