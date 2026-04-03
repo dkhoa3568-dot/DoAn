@@ -11,33 +11,33 @@ export default function OrderSuccess() {
   const [paymentStatus, setPaymentStatus] = useState(null);
   const API_URL = process.env.REACT_APP_BACKEND_URL;
 
-  useEffect(() => {
+  ususeEffect(() => {
     const sessionId = new URLSearchParams(location.search).get('session_id');
-    
+  
     if (!sessionId) {
       navigate('/cart');
       return;
     }
-
+  
     pollPaymentStatus(sessionId, 0);
-  }, [location]);
+  }, [location, navigate, pollPaymentStatus]);
 
-  const pollPaymentStatus = async (sessionId, attempts) => {
+  const pollPaymentStatus = useCallback(async (sessionId, attempts) => {
     const maxAttempts = 5;
     const pollInterval = 2000;
-
+  
     if (attempts >= maxAttempts) {
       setChecking(false);
       toast.error('Hết thời gian kiểm tra thanh toán');
       return;
     }
-
+  
     try {
       const { data } = await axios.get(
         `${API_URL}/api/checkout/status/${sessionId}`,
         { withCredentials: true }
       );
-
+  
       if (data.payment_status === 'paid') {
         setPaymentStatus('success');
         setChecking(false);
@@ -47,14 +47,14 @@ export default function OrderSuccess() {
         setChecking(false);
         return;
       }
-
+  
       setTimeout(() => pollPaymentStatus(sessionId, attempts + 1), pollInterval);
     } catch (error) {
       console.error('Error checking payment status:', error);
       setChecking(false);
       toast.error('Lỗi kiểm tra trạng thái thanh toán');
     }
-  };
+  }, [API_URL]);
 
   if (checking) {
     return (
