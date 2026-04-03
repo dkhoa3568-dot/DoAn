@@ -6,3 +6,4 @@ bcrypt
 PyJWT
 python-multipart
 email-validator
+motor==3.3.1
