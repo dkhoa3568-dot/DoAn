@@ -250,6 +250,7 @@ async def seed_products():
 
 @app.on_event("startup")
 async def startup_event():
+    pass
     await db.users.create_index("email", unique=True)
     await db.users.create_index("user_id", unique=True)
     await db.password_reset_tokens.create_index("expires_at", expireAfterSeconds=0)
