@@ -578,7 +578,7 @@ async def update_product(product_id: str, input: ProductUpdateRequest, user: dic
         raise HTTPException(status_code=404, detail="Product not found")
     return {"message": "Product updated"}
 
-app.include_router(api_router)
+app.include_router(api_router, prefix="/api")
 
 app.add_middleware(
     CORSMiddleware,
