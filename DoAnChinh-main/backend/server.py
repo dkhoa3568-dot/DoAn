@@ -28,7 +28,7 @@ if not db_name:
 db = client[db_name]
 
 app = FastAPI()
-api_router = APIRouter(prefix="/api")
+# api_router = APIRouter(prefix="/api")
 
 JWT_ALGORITHM = "HS256"
 
