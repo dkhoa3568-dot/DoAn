@@ -598,3 +598,9 @@ async def shutdown_db_client():
 @app.get("/")
 async def root():
     return {"message": "API is running 🚀"}
+
+@api_router.post("/checkout")
+async def checkout(user: dict = Depends(get_authenticated_user)):
+    return {
+        "url": "https://doan-iphone.netlify.app/order-success"
+    }
