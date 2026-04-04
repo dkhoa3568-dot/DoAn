@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity, cartTotal, loading } = useCart();
   const navigate = useNavigate();
-  const API_URL = process.env.REACT_APP_BACKEND_URL;
+  const API_URL = "https://doan-urzg.onrender.com";
 
   const handleCheckout = async () => {
     try {

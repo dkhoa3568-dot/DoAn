@@ -10,7 +10,7 @@ export default function Admin() {
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
   const navigate = useNavigate();
-  const API_URL = process.env.REACT_APP_BACKEND_URL;
+  const API_URL = "https://doan-urzg.onrender.com";
 
   const fetchOrders = useCallback(async () => {
     try {

@@ -8,7 +8,7 @@ export default function AuthCallback() {
   const location = useLocation();
   const { setUser } = useAuth();
   const hasProcessed = useRef(false);
-  const API_URL = process.env.REACT_APP_BACKEND_URL;
+  const API_URL = "https://doan-urzg.onrender.com";
 
   useEffect(() => {
     if (hasProcessed.current) return;

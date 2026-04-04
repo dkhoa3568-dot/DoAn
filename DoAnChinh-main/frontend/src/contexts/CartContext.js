@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
-  const API_URL = process.env.REACT_APP_BACKEND_URL;
+  const API_URL = "https://doan-urzg.onrender.com";
 
   const fetchCart = useCallback(async () => {
     if (!user) {

@@ -9,7 +9,7 @@ export default function OrderSuccess() {
   const location = useLocation();
   const [checking, setChecking] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState(null);
-  const API_URL = process.env.REACT_APP_BACKEND_URL;
+  const API_URL = "https://doan-urzg.onrender.com";
 
   ususeEffect(() => {
     const sessionId = new URLSearchParams(location.search).get('session_id');

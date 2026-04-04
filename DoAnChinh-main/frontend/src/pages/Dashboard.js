@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 export default function Dashboard() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const API_URL = process.env.REACT_APP_BACKEND_URL;
+  const API_URL = "https://doan-urzg.onrender.com";
 
   const fetchOrders = useCallback(async () => {
     try {
