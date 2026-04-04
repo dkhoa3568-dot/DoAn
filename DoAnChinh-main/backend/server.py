@@ -296,8 +296,24 @@ async def register(input: RegisterRequest, response: Response):
     access_token = create_access_token(user_id, email)
     refresh_token = create_refresh_token(user_id)
     
-    response.set_cookie(key="access_token", value=access_token, httponly=True, secure=False, samesite="lax", max_age=900, path="/")
-    response.set_cookie(key="refresh_token", value=refresh_token, httponly=True, secure=False, samesite="lax", max_age=604800, path="/")
+    response.set_cookie(
+    key="access_token",
+    value=access_token,
+    httponly=True,
+    secure=True,
+    samesite="none",
+    max_age=900,
+    path="/"
+)
+    response.set_cookie(
+    key="refresh_token",
+    value=refresh_token,
+    httponly=True,
+    secure=True,
+    samesite="none",
+    max_age=604800,
+    path="/"
+)
     
     user_doc.pop("password_hash")
     return UserResponse(**user_doc)
@@ -315,8 +331,24 @@ async def login(input: LoginRequest, request: Request, response: Response):
     access_token = create_access_token(user["user_id"], email)
     refresh_token = create_refresh_token(user["user_id"])
     
-    response.set_cookie(key="access_token", value=access_token, httponly=True, secure=False, samesite="lax", max_age=900, path="/")
-    response.set_cookie(key="refresh_token", value=refresh_token, httponly=True, secure=False, samesite="lax", max_age=604800, path="/")
+    response.set_cookie(
+    key="access_token",
+    value=access_token,
+    httponly=True,
+    secure=True,
+    samesite="none",
+    max_age=900,
+    path="/"
+)
+    response.set_cookie(
+    key="refresh_token",
+    value=refresh_token,
+    httponly=True,
+    secure=True,
+    samesite="none",
+    max_age=604800,
+    path="/"
+)
     
     user.pop("password_hash")
     return UserResponse(**user)
@@ -371,7 +403,15 @@ async def google_session(input: GoogleSessionRequest, response: Response):
         "created_at": datetime.now(timezone.utc)
     })
     
-    response.set_cookie(key="session_token", value=session_token, httponly=True, secure=True, samesite="none", max_age=604800, path="/")
+    response.set_cookie(
+        key="session_token",
+        value=session_token,
+        httponly=True,
+        secure=True,
+        samesite="none",
+        max_age=604800,
+        path="/"
+)
     
     user.pop("password_hash", None)
     return {"user": user}
