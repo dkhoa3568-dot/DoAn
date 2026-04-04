@@ -24,7 +24,7 @@ function formatApiErrorDetail(detail) {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const API_URL = process.env.REACT_APP_BACKEND_URL;
+  const API_URL = "https://doan-urzg.onrender.com";
 
   const checkAuth = useCallback(async () => {
     if (window.location.hash?.includes('session_id=')) {
