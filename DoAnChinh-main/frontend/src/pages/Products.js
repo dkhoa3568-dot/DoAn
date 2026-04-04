@@ -13,7 +13,7 @@ export default function Products() {
   const [selectedVariant, setSelectedVariant] = useState(0);
   const { addToCart } = useCart();
   const { user } = useAuth();
-  const API_URL = process.env.REACT_APP_BACKEND_URL;
+  const API_URL = "https://doan-urzg.onrender.com";
 
   const fetchProducts = useCallback(async () => {
     try {
