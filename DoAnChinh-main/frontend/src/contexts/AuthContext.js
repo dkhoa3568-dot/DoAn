@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const AuthContext = createContext(null);
 
@@ -47,19 +48,23 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, [checkAuth]);
 
-  const login = useCallback(async (email, password) => {
-    try {
-      const { data } = await axios.post(
-        `${API_URL}/api/auth/login`,
-        { email, password },
-        { withCredentials: true }
-      );
-      setUser(data);
-      return { success: true };
-    } catch (e) {
-      return { success: false, error: formatApiErrorDetail(e.response?.data?.detail) || e.message };
-    }
-  }, [API_URL]);
+const login = useCallback(async (email, password) => {
+  try {
+    const { data } = await axios.post(
+      `${API_URL}/api/auth/login`,
+      { email, password },
+      { withCredentials: true }
+    );
+    setUser(data);
+    return { success: true };
+  } catch (e) {
+    return {
+      success: false,
+      error:
+        formatApiErrorDetail(e.response?.data?.detail) || e.message,
+    };
+  }
+}, []);
 
   const register = useCallback(async (email, password, name) => {
     try {
