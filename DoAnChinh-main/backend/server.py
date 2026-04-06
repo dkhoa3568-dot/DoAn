@@ -20,15 +20,16 @@ import secrets
 import asyncio
 
 mongo_url = os.environ.get("MONGO_URL")
+if not mongo_url:
+    raise Exception("Missing MONGO_URL")
+
 client = AsyncIOMotorClient(mongo_url)
+
 db_name = os.environ.get("DB_NAME")
 if not db_name:
     raise Exception("Missing DB_NAME")
 
 db = client[db_name]
-
-from fastapi import FastAPI, APIRouter
-
 app = FastAPI()
 
 api_router = APIRouter(prefix="/api")
