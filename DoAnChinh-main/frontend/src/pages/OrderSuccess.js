@@ -11,7 +11,7 @@ export default function OrderSuccess() {
   const [paymentStatus, setPaymentStatus] = useState(null);
   const API_URL = "https://doan-urzg.onrender.com";
 
-  ususeEffect(() => {
+  useEffect(() => {
     const sessionId = new URLSearchParams(location.search).get('session_id');
   
     if (!sessionId) {
@@ -34,8 +34,7 @@ export default function OrderSuccess() {
   
     try {
       const { data } = await axios.get(
-        `${API_URL}/api/checkout/status/${sessionId}`,
-        { withCredentials: true }
+        `${API_URL}/api/checkout/status/${sessionId}`
       );
   
       if (data.payment_status === 'paid') {

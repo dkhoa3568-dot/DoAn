@@ -188,9 +188,9 @@ async def seed_products():
                 "name": "iPhone 17 Pro Max",
                 "description": "Chiếc iPhone tối thượng với hệ thống camera tiên tiến, chip A18 Pro và thiết kế titanium tuyệt đẹp.",
                 "variants": [
-                    {"storage": "256GB", "color": "Natural Titanium", "price": 29990000, "stock": 50},
-                    {"storage": "512GB", "color": "Natural Titanium", "price": 34990000, "stock": 40},
-                    {"storage": "1TB", "color": "Natural Titanium", "price": 39990000, "stock": 30},
+                    {"storage": "256GB", "color": "Natural Titanium", "price": 29.990000, "stock": 50},
+                    {"storage": "512GB", "color": "Natural Titanium", "price": 34.990000, "stock": 40},
+                    {"storage": "1TB", "color": "Natural Titanium", "price": 39.990000, "stock": 30},
                 ],
                 "features": ["A18 Pro chip", "48MP camera system", "Titanium design", "Action button"],
                 "category": "flagship",
@@ -202,9 +202,9 @@ async def seed_products():
                 "name": "iPhone 16 Pro Max",
                 "description": "iPhone 16 Pro Max là flagship cao cấp của Apple với chip A18 Pro mạnh mẽ, camera 48MP chuyên nghiệp, màn hình lớn 6.9 inch và thiết kế titanium sang trọng.",
                 "variants": [
-                    {"storage": "128GB", "color": "Desert Titanium", "price": 29990000, "stock": 60},
-                    {"storage": "256GB", "color": "Desert Titanium", "price": 31990000, "stock": 55},
-                    {"storage": "512GB", "color": "Desert Titanium", "price": 36990000, "stock": 40}
+                    {"storage": "128GB", "color": "Desert Titanium", "price": 29.90000, "stock": 60},
+                    {"storage": "256GB", "color": "Desert Titanium", "price": 31.990000, "stock": 55},
+                    {"storage": "512GB", "color": "Desert Titanium", "price": 36.990000, "stock": 40}
                 ],
                 "features": ["A18 Pro chip", "Pro camera system", "6.3 display"],
                 "category": "flagship",
@@ -216,9 +216,9 @@ async def seed_products():
                 "name": "iPhone Air",
                 "description": "iPhone Air là dòng iPhone mới tập trung vào thiết kế siêu mỏng và nhẹ, nhưng vẫn giữ hiệu năng mạnh mẽ.",
                 "variants": [
-                    {"storage": "256GB", "color": "Black", "price": 22990000, "stock": 70},
-                    {"storage": "512GB", "color": "Black", "price": 27990000, "stock": 50},
-                    {"storage": "1TB", "color": "Black", "price": 33990000, "stock": 80}
+                    {"storage": "256GB", "color": "Black", "price": 22.990000, "stock": 70},
+                    {"storage": "512GB", "color": "Black", "price": 27.990000, "stock": 50},
+                    {"storage": "1TB", "color": "Black", "price": 33.990000, "stock": 80}
                 ],
                 "features": ["A18 chip", "Dual camera system", "All-day battery"],
                 "category": "standard",
@@ -230,9 +230,9 @@ async def seed_products():
                 "name": "iPhone 15 Pro Max",
                 "description": "iPhone 15 Pro Max là flagship cao cấp của Apple ra mắt năm 2023, nổi bật với hiệu năng mạnh, camera zoom xa và thiết kế mới.",
                 "variants": [
-                    {"storage": "128GB", "color": "Blue", "price": 17990000, "stock": 90},
-                    {"storage": "256GB", "color": "Blue", "price": 25990000, "stock": 80},
-                    {"storage": "512GB", "color": "Green", "price": 31990000, "stock": 85}
+                    {"storage": "128GB", "color": "Blue", "price": 17.990000, "stock": 90},
+                    {"storage": "256GB", "color": "Blue", "price": 25.990000, "stock": 80},
+                    {"storage": "512GB", "color": "Green", "price": 31.990000, "stock": 85}
                 ],
                 "features": ["A16 Bionic chip", "Advanced camera", "Dynamic Island"],
                 "category": "standard",
@@ -613,5 +613,12 @@ async def get_products():
 @api_router.post("/auth/login")
 async def login():
     return {"message": "login success"}
+
+@api_router.get("/checkout/status/{session_id}")
+async def check_status(session_id: str):
+    return {
+        "payment_status": "paid",  
+        "status": "success"
+    }
 
 app.include_router(api_router)
