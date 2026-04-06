@@ -34,8 +34,6 @@ app = FastAPI()
 
 api_router = APIRouter(prefix="/api")
 
-app.include_router(api_router)
-
 JWT_ALGORITHM = "HS256"
 
 def get_jwt_secret() -> str:
@@ -610,3 +608,15 @@ async def checkout(user: dict = Depends(get_authenticated_user)):
     return {
         "url": "https://doan-iphone.netlify.app/order-success"
     }
+@api_router.get("/products")
+async def get_products():
+    return [
+        {"name": "iPhone 15", "price": 20000000},
+        {"name": "iPhone 14", "price": 18000000}
+    ]
+
+@api_router.post("/auth/login")
+async def login():
+    return {"message": "login success"}
+
+app.include_router(api_router)
