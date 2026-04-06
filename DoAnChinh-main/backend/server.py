@@ -577,8 +577,6 @@ async def update_product(product_id: str, input: ProductUpdateRequest, user: dic
         raise HTTPException(status_code=404, detail="Product not found")
     return {"message": "Product updated"}
 
-app.include_router(api_router, prefix="/api")
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=os.environ.get("CORS_ORIGINS", "").split(","),
@@ -600,19 +598,11 @@ async def root():
 
 @api_router.post("/checkout")
 async def checkout(user: dict = Depends(get_authenticated_user)):
-    return {
-        "url": "https://doan-iphone.netlify.app/order-success"
-    }
-@api_router.get("/products")
-async def get_products():
-    return [
-        {"name": "iPhone 15", "price": 20000000},
-        {"name": "iPhone 14", "price": 18000000}
-    ]
+    session_id = f"sess_{uuid.uuid4().hex[:12]}"
 
-@api_router.post("/auth/login")
-async def login():
-    return {"message": "login success"}
+    return {
+        "url": f"https://doan-iphone.netlify.app/order-success?session_id={session_id}"
+    }
 
 @api_router.get("/checkout/status/{session_id}")
 async def check_status(session_id: str):
