@@ -579,7 +579,7 @@ async def update_product(product_id: str, input: ProductUpdateRequest, user: dic
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=os.environ.get("CORS_ORIGINS", "").split(","),
+    allow_origins=["*"],  # test cho nhanh
     allow_credentials=True,   # 🔥 QUAN TRỌNG
     allow_methods=["*"],
     allow_headers=["*"],
@@ -597,9 +597,8 @@ async def root():
     return {"message": "API is running 🚀"}
 
 @api_router.post("/checkout")
-async def checkout(user: dict = Depends(get_authenticated_user)):
-    session_id = f"sess_{uuid.uuid4().hex[:12]}"
-
+async def checkout():
+    session_id = f"sess_{uuid.uuid4().hex[:8]}"
     return {
         "url": f"https://doan-iphone.netlify.app/order-success?session_id={session_id}"
     }
