@@ -16,7 +16,6 @@ export default function Cart() {
       const { data } = await axios.post(
         `${API_URL}/api/checkout`,
         { origin_url: originUrl },
-        { withCredentials: true }
       );
       window.location.href = data.url;
     } catch (error) {
