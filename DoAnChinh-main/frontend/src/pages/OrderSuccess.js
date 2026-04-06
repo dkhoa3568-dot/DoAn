@@ -11,32 +11,22 @@ export default function OrderSuccess() {
   const [paymentStatus, setPaymentStatus] = useState(null);
   const API_URL = "https://doan-urzg.onrender.com";
 
-  useEffect(() => {
-    const sessionId = new URLSearchParams(location.search).get('session_id');
-  
-    if (!sessionId) {
-      navigate('/cart');
-      return;
-    }
-  
-    pollPaymentStatus(sessionId, 0);
-  }, [location, navigate, pollPaymentStatus]);
-
+  // ✅ ĐẶT LÊN TRÊN (QUAN TRỌNG)
   const pollPaymentStatus = useCallback(async (sessionId, attempts) => {
     const maxAttempts = 5;
     const pollInterval = 2000;
-  
+
     if (attempts >= maxAttempts) {
       setChecking(false);
       toast.error('Hết thời gian kiểm tra thanh toán');
       return;
     }
-  
+
     try {
       const { data } = await axios.get(
         `${API_URL}/api/checkout/status/${sessionId}`
       );
-  
+
       if (data.payment_status === 'paid') {
         setPaymentStatus('success');
         setChecking(false);
@@ -46,7 +36,7 @@ export default function OrderSuccess() {
         setChecking(false);
         return;
       }
-  
+
       setTimeout(() => pollPaymentStatus(sessionId, attempts + 1), pollInterval);
     } catch (error) {
       console.error('Error checking payment status:', error);
@@ -55,6 +45,19 @@ export default function OrderSuccess() {
     }
   }, [API_URL]);
 
+  // ✅ useEffect đặt SAU
+  useEffect(() => {
+    const sessionId = new URLSearchParams(location.search).get('session_id');
+
+    if (!sessionId) {
+      navigate('/cart');
+      return;
+    }
+
+    pollPaymentStatus(sessionId, 0);
+  }, [location, navigate, pollPaymentStatus]);
+
+  // ⏳ Loading
   if (checking) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#050505] pt-20">
@@ -66,49 +69,44 @@ export default function OrderSuccess() {
     );
   }
 
+  // ✅ Thành công
   if (paymentStatus === 'success') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#050505] pt-20 px-4" data-testid="order-success-page">
+      <div className="min-h-screen flex items-center justify-center bg-[#050505] pt-20 px-4">
         <div className="max-w-md w-full text-center">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#30D158]/10 mb-6">
             <CheckCircle size={48} className="text-[#30D158]" weight="fill" />
           </div>
-          
-          <h1 className="text-4xl font-medium tracking-tight mb-4" data-testid="success-title">Đặt Hàng Thành Công!</h1>
+
+          <h1 className="text-4xl font-medium mb-4">
+            Đặt Hàng Thành Công!
+          </h1>
+
           <p className="text-[#A1A1A6] text-lg mb-8">
-            Cảm ơn bạn đã mua hàng. Đơn hàng của bạn đã được xác nhận và sẽ sớm được giao.
+            Cảm ơn bạn đã mua hàng ❤️
           </p>
 
-          <div className="space-y-3">
-            <button
-              onClick={() => navigate('/dashboard')}
-              className="btn-primary w-full"
-              data-testid="view-orders-button"
-            >
-              Xem Đơn Hàng Của Tôi
-            </button>
-            <button
-              onClick={() => navigate('/products')}
-              className="btn-secondary w-full"
-              data-testid="continue-shopping-success"
-            >
-              Tiếp Tục Mua Sắm
-            </button>
-          </div>
+          <button
+            onClick={() => navigate('/products')}
+            className="btn-primary w-full"
+          >
+            Tiếp tục mua sắm
+          </button>
         </div>
       </div>
     );
   }
 
+  // ❌ Lỗi
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#050505] pt-20 px-4">
-      <div className="max-w-md w-full text-center">
-        <h1 className="text-4xl font-medium tracking-tight mb-4">Vấn Đề Thanh Toán</h1>
-        <p className="text-[#A1A1A6] text-lg mb-8">
-          Có vấn đề khi xử lý thanh toán của bạn. Vui lòng thử lại.
-        </p>
-        <button onClick={() => navigate('/cart')} className="btn-primary">
-          Quay Lại Giỏ Hàng
+      <div className="text-center">
+        <h1 className="text-3xl mb-4">Lỗi thanh toán</h1>
+        <button
+          onClick={() => navigate('/cart')}
+          className="btn-primary"
+        >
+          Quay lại giỏ hàng
         </button>
       </div>
     </div>
