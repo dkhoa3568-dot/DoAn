@@ -610,4 +610,11 @@ async def check_status(session_id: str):
         "status": "success"
     }
 
+@api_router.get("/products")
+async def get_products():
+    return await db.products.find(
+        {"category": "flagship"},  # hoặc filter theo nhu cầu
+        {"_id": 0}
+    ).to_list(100)
+
 app.include_router(api_router)
