@@ -185,63 +185,58 @@ async def seed_products():
         products = [
             {
                 "product_id": f"prod_{uuid.uuid4().hex[:12]}",
-                "name": "iPhone 16 Pro Max",
-                "description": "The ultimate iPhone with advanced camera system, A18 Pro chip, and stunning titanium design.",
+                "name": "iPhone 17 Pro Max",
+                "description": "Chiếc iPhone tối thượng với hệ thống camera tiên tiến, chip A18 Pro và thiết kế titanium tuyệt đẹp.",
                 "variants": [
-                    {"storage": "256GB", "color": "Natural Titanium", "price": 1199.00, "stock": 50},
-                    {"storage": "512GB", "color": "Natural Titanium", "price": 1399.00, "stock": 40},
-                    {"storage": "1TB", "color": "Natural Titanium", "price": 1599.00, "stock": 30},
-                    {"storage": "256GB", "color": "Blue Titanium", "price": 1199.00, "stock": 45},
-                    {"storage": "512GB", "color": "Blue Titanium", "price": 1399.00, "stock": 35},
+                    {"storage": "256GB", "color": "Natural Titanium", "price": 29990000, "stock": 50},
+                    {"storage": "512GB", "color": "Natural Titanium", "price": 34990000, "stock": 40},
+                    {"storage": "1TB", "color": "Natural Titanium", "price": 39990000, "stock": 30},
                 ],
                 "features": ["A18 Pro chip", "48MP camera system", "Titanium design", "Action button"],
                 "category": "flagship",
-                "image": "https://static.prod-images.emergentagent.com/jobs/a4d3fad4-3db0-44f5-a5ce-de38fedecc5b/images/2c1c50bdfe2bbb379e252e56a91233f62daf65090440c5a8b686e9439567fd4e.png",
+                "image": "https://www.gadgetguy.com.au/wp-content/uploads/2025/09/iPhone-17-Pro-colours-official-1536x1536.jpg",
                 "created_at": datetime.now(timezone.utc)
             },
             {
                 "product_id": f"prod_{uuid.uuid4().hex[:12]}",
-                "name": "iPhone 16 Pro",
-                "description": "Pro performance with advanced features in a more compact size.",
+                "name": "iPhone 16 Pro Max",
+                "description": "iPhone 16 Pro Max là flagship cao cấp của Apple với chip A18 Pro mạnh mẽ, camera 48MP chuyên nghiệp, màn hình lớn 6.9 inch và thiết kế titanium sang trọng.",
                 "variants": [
-                    {"storage": "128GB", "color": "Desert Titanium", "price": 999.00, "stock": 60},
-                    {"storage": "256GB", "color": "Desert Titanium", "price": 1099.00, "stock": 55},
-                    {"storage": "512GB", "color": "Desert Titanium", "price": 1299.00, "stock": 40},
-                    {"storage": "128GB", "color": "White Titanium", "price": 999.00, "stock": 50},
+                    {"storage": "128GB", "color": "Desert Titanium", "price": 29990000, "stock": 60},
+                    {"storage": "256GB", "color": "Desert Titanium", "price": 31990000, "stock": 55},
+                    {"storage": "512GB", "color": "Desert Titanium", "price": 36990000, "stock": 40}
                 ],
                 "features": ["A18 Pro chip", "Pro camera system", "6.3 display"],
                 "category": "flagship",
-                "image": "https://images.unsplash.com/photo-1727079525588-4638ea8301e0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHw0fHxpcGhvbmUlMjBwcm8lMjBtYXh8ZW58MHx8fHwxNzc1MjM5NzgxfDA&ixlib=rb-4.1.0&q=85",
+                "image": "https://www.finder.com.au/finder-au/wp-uploads/2024/09/Apple-iPhone-16-Pro-finish-lineup-240909_big.jpg.large_2x.jpg?fit=1200",
                 "created_at": datetime.now(timezone.utc)
             },
             {
                 "product_id": f"prod_{uuid.uuid4().hex[:12]}",
-                "name": "iPhone 16",
-                "description": "The perfect balance of performance and value with the powerful A18 chip.",
+                "name": "iPhone Air",
+                "description": "iPhone Air là dòng iPhone mới tập trung vào thiết kế siêu mỏng và nhẹ, nhưng vẫn giữ hiệu năng mạnh mẽ.",
                 "variants": [
-                    {"storage": "128GB", "color": "Black", "price": 799.00, "stock": 80},
-                    {"storage": "256GB", "color": "Black", "price": 899.00, "stock": 70},
-                    {"storage": "512GB", "color": "Black", "price": 1099.00, "stock": 50},
-                    {"storage": "128GB", "color": "Pink", "price": 799.00, "stock": 75},
-                    {"storage": "256GB", "color": "Pink", "price": 899.00, "stock": 60},
+                    {"storage": "256GB", "color": "Black", "price": 22990000, "stock": 70},
+                    {"storage": "512GB", "color": "Black", "price": 27990000, "stock": 50},
+                    {"storage": "1TB", "color": "Black", "price": 33990000, "stock": 80}
                 ],
                 "features": ["A18 chip", "Dual camera system", "All-day battery"],
                 "category": "standard",
-                "image": "https://images.unsplash.com/photo-1727079513748-d03e7b8c8947?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwzfHxpcGhvbmUlMjBwcm8lMjBtYXh8ZW58MHx8fHwxNzc1MjM5NzgxfDA&ixlib=rb-4.1.0&q=85",
+                "image": "https://www.yankodesign.com/images/design_news/2025/09/please-dont-put-a-case-on-your-iphone-air/iphone_air_no_case_2.jpeg",
                 "created_at": datetime.now(timezone.utc)
             },
             {
                 "product_id": f"prod_{uuid.uuid4().hex[:12]}",
-                "name": "iPhone 15",
-                "description": "Last year's flagship, still incredibly powerful with premium features.",
+                "name": "iPhone 15 Pro Max",
+                "description": "iPhone 15 Pro Max là flagship cao cấp của Apple ra mắt năm 2023, nổi bật với hiệu năng mạnh, camera zoom xa và thiết kế mới.",
                 "variants": [
-                    {"storage": "128GB", "color": "Blue", "price": 699.00, "stock": 90},
-                    {"storage": "256GB", "color": "Blue", "price": 799.00, "stock": 80},
-                    {"storage": "128GB", "color": "Green", "price": 699.00, "stock": 85},
+                    {"storage": "128GB", "color": "Blue", "price": 17990000, "stock": 90},
+                    {"storage": "256GB", "color": "Blue", "price": 25990000, "stock": 80},
+                    {"storage": "512GB", "color": "Green", "price": 31990000, "stock": 85}
                 ],
                 "features": ["A16 Bionic chip", "Advanced camera", "Dynamic Island"],
                 "category": "standard",
-                "image": "https://images.unsplash.com/photo-1710023038502-ba80a70a9f53?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHxpcGhvbmUlMjBwcm8lMjBtYXh8ZW58MHx8fHwxNzc1MjM5NzgxfDA&ixlib=rb-4.1.0&q=85",
+                "image": "https://www.notebookcheck.net/fileadmin/_processed_/5/e/csm_Apple_iPhone_17_Pro_63ecacbd24.jpg",
                 "created_at": datetime.now(timezone.utc)
             },
         ]

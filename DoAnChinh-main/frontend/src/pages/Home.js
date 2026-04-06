@@ -68,15 +68,15 @@ export default function Home() {
             <div className="product-card group" data-testid="featured-iphone-16-pro-max">
               <div className="aspect-square overflow-hidden">
                 <img
-                  src="https://static.prod-images.emergentagent.com/jobs/a4d3fad4-3db0-44f5-a5ce-de38fedecc5b/images/2c1c50bdfe2bbb379e252e56a91233f62daf65090440c5a8b686e9439567fd4e.png"
-                  alt="iPhone 16 Pro Max"
+                  src="https://www.gadgetguy.com.au/wp-content/uploads/2025/09/iPhone-17-Pro-colours-official-1536x1536.jpg"
+                  alt="iPhone 17 Pro Max"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-medium mb-2">iPhone 16 Pro Max</h3>
-                <p className="text-[#A1A1A6] mb-4">iPhone đỉnh cao với thiết kế titan</p>
-                <p className="text-xl font-semibold mb-4">Từ $1,199</p>
+                <h3 className="text-2xl font-medium mb-2">iPhone 17 Pro Max</h3>
+                <p className="text-[#A1A1A6] mb-4">iPhone đỉnh cao với thiết kế khung nhôm</p>
+                <p className="text-xl font-semibold mb-4">Từ 34.990.000</p>
                 <Link to="/products" className="btn-primary inline-block" data-testid="view-iphone-16-pro-max">
                   Xem Chi Tiết
                 </Link>
@@ -86,15 +86,15 @@ export default function Home() {
             <div className="product-card group" data-testid="featured-iphone-16-pro">
               <div className="aspect-square overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1727079525588-4638ea8301e0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHw0fHxpcGhvbmUlMjBwcm8lMjBtYXh8ZW58MHx8fHwxNzc1MjM5NzgxfDA&ixlib=rb-4.1.0&q=85"
-                  alt="iPhone 16 Pro"
+                  src="https://www.yankodesign.com/images/design_news/2025/09/please-dont-put-a-case-on-your-iphone-air/iphone_air_no_case_2.jpeg"
+                  alt="iPhone Air"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-medium mb-2">iPhone 16 Pro</h3>
-                <p className="text-[#A1A1A6] mb-4">Hiệu năng Pro trong kích thước gọn nhẹ</p>
-                <p className="text-xl font-semibold mb-4">Từ $999</p>
+                <h3 className="text-2xl font-medium mb-2">iPhone Air</h3>
+                <p className="text-[#A1A1A6] mb-4">Thiết kế mỏng nhẹ</p>
+                <p className="text-xl font-semibold mb-4">Từ 27.990.000</p>
                 <Link to="/products" className="btn-primary inline-block" data-testid="view-iphone-16-pro">
                   Xem Chi Tiết
                 </Link>
@@ -142,7 +142,7 @@ export default function Home() {
       <section className="py-24 bg-[#0A0A0A]" data-testid="cta-section">
         <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
           <h2 className="text-3xl sm:text-4xl tracking-tight font-medium mb-6">
-            Sẵn Sàng Nâng Cấp?
+            Sản Phẩm Nâng Cấp?
           </h2>
           <p className="text-[#A1A1A6] text-lg mb-8">
             Khám phá toàn bộ bộ sưu tập và tìm chiếc iPhone hoàn hảo cho bạn ngay hôm nay.
