@@ -1,4 +1,4 @@
 [build]
-  base = "DoAnChinh-main/frontend"
-  command = "npm run build"
-  publish = "build"
+base = "DoAnChinh-main/frontend"
+command = "npm run build"
+publish = "dist"
