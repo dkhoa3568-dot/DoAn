@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   const fetchOrders = useCallback(async () => {
     try {
-      const { data } = await axios.get(`${API_URL}/api/orders`, { withCredentials: true });
+      const { data } = await axios.get(`${API_URL}/api/orders`, );
       setOrders(data);
     } catch (error) {
       if (process.env.NODE_ENV === 'development') console.error('Error fetching orders:', error);

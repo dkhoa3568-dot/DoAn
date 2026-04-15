@@ -29,7 +29,6 @@ export default function AuthCallback() {
         const { data } = await axios.post(
           `${API_URL}/api/auth/google/session`,
           { session_id: sessionId },
-          { withCredentials: true }
         );
         
         setUser(data.user);

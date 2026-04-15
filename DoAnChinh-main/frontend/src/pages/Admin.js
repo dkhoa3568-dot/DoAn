@@ -14,7 +14,7 @@ export default function Admin() {
 
   const fetchOrders = useCallback(async () => {
     try {
-      const { data } = await axios.get(`${API_URL}/api/admin/orders`, { withCredentials: true });
+      const { data } = await axios.get(`${API_URL}/api/admin/orders`,);
       setOrders(data);
     } catch (error) {
       if (process.env.NODE_ENV === 'development') console.error('Error fetching orders:', error);
@@ -37,7 +37,6 @@ export default function Admin() {
       await axios.put(
         `${API_URL}/api/admin/orders/${orderId}/status?status=${newStatus}`,
         {},
-        { withCredentials: true }
       );
       toast.success('Cập nhật trạng thái thành công');
       fetchOrders();
