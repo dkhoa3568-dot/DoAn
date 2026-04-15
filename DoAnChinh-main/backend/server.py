@@ -39,8 +39,8 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # 🔥 cho tất cả
-    allow_credentials=False,      # 🔥 QUAN TRỌNG NHẤT
+    allow_origins=["https://precious-banoffee-61ddc0.netlify.app"],
+    allow_credentials=True,    
     allow_methods=["*"],
     allow_headers=["*"],
 )
