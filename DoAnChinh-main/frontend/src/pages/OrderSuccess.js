@@ -9,6 +9,7 @@ export default function OrderSuccess() {
   const location = useLocation();
   const [checking, setChecking] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState(null);
+  const [saved, setSaved] = useState(false); 
   const API_URL = "https://doan-urzg.onrender.com";
 
   // ✅ ĐẶT LÊN TRÊN (QUAN TRỌNG)
