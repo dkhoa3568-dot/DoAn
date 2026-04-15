@@ -39,9 +39,9 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_origins=["*"],          # 🔥 cho tất cả
+    allow_credentials=False,      # 🔥 QUAN TRỌNG NHẤT
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 api_router = APIRouter(prefix="/api")
