@@ -611,12 +611,6 @@ async def check_status(session_id: str):
         "status": "success"
     }
 
-from pymongo import MongoClient
-
-client = MongoClient("mongodb+srv://khoadao3568_db_user:admin12345@cluster0.4e11see.mongodb.net/iphonedb?retryWrites=true&w=majority")
-db = client["iphonedb"]
-orders_collection = db["orders"]
-
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -628,7 +622,7 @@ class Order(BaseModel):
 
 @api_router.post("/orders")
 async def create_order(order: Order):
-    await db.orders.insert_one(order.dict())  # ✅ await
+    await db.orders.insert_one(order.dict())
     return {"message": "Order saved"}
 
 @api_router.get("/products")
