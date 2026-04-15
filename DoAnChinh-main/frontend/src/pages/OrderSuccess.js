@@ -27,20 +27,16 @@ export default function OrderSuccess() {
         `${API_URL}/api/checkout/status/${sessionId}`
       );
 
-      if (data.payment_status === 'paid') {
+      if (data.payment_status === 'paid' && !saved) {
 
-        // 🔥 LƯU ORDER VÀO DATABASE
-        await axios.post(`${API_URL}/orders`, {
+        await axios.post(`${API_URL}/api/orders`, {
           user: "khoa",
           items: ["iphone 15"],
           total: 15000000
         });
       
+        setSaved(true);
         setPaymentStatus('success');
-        setChecking(false);
-        return;
-      }else if (data.status === 'expired') {
-        setPaymentStatus('expired');
         setChecking(false);
         return;
       }
