@@ -30,13 +30,17 @@ if not db_name:
     raise Exception("Missing DB_NAME")
 
 db = client[db_name]
+
 app = FastAPI()
+
+origins = [
+    "https://precious-banoffee-61d6dc.netlify.app",
+    "http://localhost:3000"
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://precious-banoffee-61ddc0.netlify.app"
-    ],
+    allow_origins=origins,   # hoặc ["*"] nếu test
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
