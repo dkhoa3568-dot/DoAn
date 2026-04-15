@@ -6,7 +6,6 @@ ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, Depends, Header
-from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, Field, EmailStr, ConfigDict
 from typing import List, Optional, Dict, Any
@@ -622,15 +621,13 @@ orders_collection = db["orders"]
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-app = FastAPI()
-
 class Order(BaseModel):
     user: str
     items: list
     total: float
 
 @api_router.post("/orders")
-def create_order(order: Order):
+async def create_order(order: Order):
     orders_collection.insert_one(order.dict())
     return {"message": "Order saved"}
 
