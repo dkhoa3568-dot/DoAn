@@ -28,10 +28,18 @@ export default function OrderSuccess() {
       );
 
       if (data.payment_status === 'paid') {
+
+        // 🔥 LƯU ORDER VÀO DATABASE
+        await axios.post(`${API_URL}/orders`, {
+          user: "khoa",
+          items: ["iphone 15"],
+          total: 15000000
+        });
+      
         setPaymentStatus('success');
         setChecking(false);
         return;
-      } else if (data.status === 'expired') {
+      }else if (data.status === 'expired') {
         setPaymentStatus('expired');
         setChecking(false);
         return;

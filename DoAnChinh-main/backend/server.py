@@ -610,6 +610,12 @@ async def check_status(session_id: str):
         "status": "success"
     }
 
+from pymongo import MongoClient
+
+client = MongoClient("YOUR_MONGODB_URL")
+db = client["iphonedb"]
+orders_collection = db["orders"]
+
 @api_router.get("/products")
 async def get_products():
     return await db.products.find(
