@@ -254,15 +254,15 @@ async def seed_products():
 
 @app.on_event("startup")
 async def startup_event():
-    pass
-    await db.users.create_index("email", unique=True)
-    await db.users.create_index("user_id", unique=True)
-    await db.password_reset_tokens.create_index("expires_at", expireAfterSeconds=0)
-    await db.login_attempts.create_index("identifier")
-    await db.products.create_index("product_id", unique=True)
-    await db.orders.create_index("order_id", unique=True)
-    await db.orders.create_index("user_id")
-    await db.payment_transactions.create_index("session_id")
+    db.users.create_index("email", unique=True)
+    db.users.create_index("user_id", unique=True)
+    db.password_reset_tokens.create_index("expires_at", expireAfterSeconds=0)
+    db.login_attempts.create_index("identifier")
+    db.products.create_index("product_id", unique=True)
+    db.orders.create_index("order_id", unique=True)
+    db.orders.create_index("user_id")
+    db.payment_transactions.create_index("session_id")
+
     await seed_admin()
     await seed_products()
 
@@ -628,9 +628,8 @@ class Order(BaseModel):
 
 @api_router.post("/orders")
 async def create_order(order: Order):
-    orders_collection.insert_one(order.dict())
+    await db.orders.insert_one(order.dict())  # ✅ await
     return {"message": "Order saved"}
-
 
 @api_router.get("/products")
 async def get_products():
