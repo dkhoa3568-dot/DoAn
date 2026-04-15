@@ -34,14 +34,14 @@ db = client[db_name]
 app = FastAPI()
 
 origins = [
-    "https://precious-banoffee-61d6dc.netlify.app",
-    "http://localhost:3000"
+    "https://precious-banoffee-61d6dc.netlify.app"
 ]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins, 
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 api_router = APIRouter(prefix="/api")
