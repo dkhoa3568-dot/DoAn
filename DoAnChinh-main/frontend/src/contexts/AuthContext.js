@@ -34,6 +34,7 @@ export const AuthProvider = ({ children }) => {
     
     try {
       const { data } = await axios.get(`${API_URL}/api/auth/me`, {
+        withCredentials: true
       });
       setUser(data);
     } catch (error) {
@@ -52,6 +53,7 @@ const login = useCallback(async (email, password) => {
     const { data } = await axios.post(
       `${API_URL}/api/auth/login`,
       { email, password },
+      { withCredentials: true }
     );
     setUser(data);
     return { success: true };
@@ -69,6 +71,7 @@ const login = useCallback(async (email, password) => {
       const { data } = await axios.post(
         `${API_URL}/api/auth/register`,
         { email, password, name },
+        { withCredentials: true }
       );
       setUser(data);
       return { success: true };
@@ -79,7 +82,7 @@ const login = useCallback(async (email, password) => {
 
   const logout = useCallback(async () => {
     try {
-      await axios.post(`${API_URL}/api/auth/logout`, {},);
+      await axios.post(`${API_URL}/api/auth/logout`, {}, { withCredentials: true });
       setUser(null);
     } catch (error) {
       if (process.env.NODE_ENV === 'development') console.error('Logout error:', error);

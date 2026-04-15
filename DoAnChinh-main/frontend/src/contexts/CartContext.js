@@ -25,7 +25,9 @@ export const CartProvider = ({ children }) => {
     }
     try {
       setLoading(true);
-      const { data } = await axios.get(`${API_URL}/api/cart`,);
+      const { data } = await axios.get(`${API_URL}/api/cart`, {
+        withCredentials: true
+      });
       setCart(data);
     } catch (error) {
       if (process.env.NODE_ENV === 'development') console.error('Error fetching cart:', error);
@@ -42,7 +44,14 @@ export const CartProvider = ({ children }) => {
     try {
       await axios.post(
         `${API_URL}/api/cart`,
-        { product_id: productId, variant_index: variantIndex, quantity },
+        {
+          product_id: productId,
+          variant_index: variantIndex,
+          quantity
+        },
+        {
+          withCredentials: true
+        }
       );
       await fetchCart();
       return { success: true };
@@ -53,7 +62,9 @@ export const CartProvider = ({ children }) => {
 
   const removeFromCart = useCallback(async (cartItemId) => {
     try {
-      await axios.delete(`${API_URL}/api/cart/${cartItemId}`,);
+      await axios.delete(`${API_URL}/api/cart/${cartItemId}`, {
+        withCredentials: true
+      });
       await fetchCart();
     } catch (error) {
       if (process.env.NODE_ENV === 'development') console.error('Error removing from cart:', error);
@@ -65,6 +76,9 @@ export const CartProvider = ({ children }) => {
       await axios.put(
         `${API_URL}/api/cart/${cartItemId}?quantity=${quantity}`,
         {},
+        {
+          withCredentials: true
+        }
       );
       await fetchCart();
     } catch (error) {
