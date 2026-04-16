@@ -12,20 +12,23 @@ export default function Cart() {
 
   const handleCheckout = async () => {
     try {
-      const originUrl = window.location.origin;
       const token = localStorage.getItem("token");
-
+  
+      const originUrl = window.location.origin;
+  
       const { data } = await axios.post(
         `${API_URL}/api/checkout`,
         { origin_url: originUrl },
         {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           }
         }
       );
+  
       window.location.href = data.url;
     } catch (error) {
+      console.log(error);
       toast.error(error.response?.data?.detail || 'Không thể tạo phiên thanh toán');
     }
   };
@@ -128,7 +131,7 @@ export default function Cart() {
                 </div>
 
                 <button
-                  onClick={handleCheckout}
+                  onClick={() => navigate("/checkout")}
                   className="btn-primary w-full"
                   data-testid="checkout-button"
                 >

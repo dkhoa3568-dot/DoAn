@@ -14,6 +14,7 @@ import Cart from './pages/Cart';
 import OrderSuccess from './pages/OrderSuccess';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
+import Checkout from './pages/Checkout';
 import '@/App.css';
 
 function AppRouter() {
@@ -32,6 +33,7 @@ function AppRouter() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+        <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
         <Route path="/order-success" element={<ProtectedRoute><OrderSuccess /></ProtectedRoute>} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />

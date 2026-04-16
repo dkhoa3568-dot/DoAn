@@ -34,7 +34,9 @@ export const AuthProvider = ({ children }) => {
     
     try {
       const { data } = await axios.get(`${API_URL}/api/auth/me`, {
-        withCredentials: true
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
       });
       setUser(data);
     } catch (error) {
@@ -48,23 +50,28 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, [checkAuth]);
 
-const login = useCallback(async (email, password) => {
-  try {
-    const { data } = await axios.post(
-      `${API_URL}/api/auth/login`,
-      { email, password },
-      { withCredentials: true }
-    );
-    setUser(data);
-    return { success: true };
-  } catch (e) {
-    return {
-      success: false,
-      error:
-        formatApiErrorDetail(e.response?.data?.detail) || e.message,
-    };
-  }
-}, []);
+  const login = useCallback(async (email, password) => {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}/api/auth/login`,
+        { email, password }
+      );
+  
+      // LƯU TOKEN
+      localStorage.setItem("token", data.access_token);
+  
+      // set user
+      setUser({ email });
+  
+      return { success: true };
+    } catch (e) {
+      return {
+        success: false,
+        error:
+          formatApiErrorDetail(e.response?.data?.detail) || e.message,
+      };
+    }
+  }, []);
 
   const register = useCallback(async (email, password, name) => {
     try {
