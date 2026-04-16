@@ -9,7 +9,6 @@ export default function OrderSuccess() {
   const location = useLocation();
   const [checking, setChecking] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState(null);
-  const [saved, setSaved] = useState(false); 
   const API_URL = "https://doan-urzg.onrender.com";
 
   // ✅ ĐẶT LÊN TRÊN (QUAN TRỌNG)
@@ -28,14 +27,7 @@ export default function OrderSuccess() {
         `${API_URL}/api/checkout/status/${sessionId}`
       );
 
-      if (data.payment_status === 'paid' && !saved) {
-
-        await axios.post(`${API_URL}/api/orders`, {
-          user: "khoa",
-          items: ["iphone 15"],
-          total: 15000000
-        });
-      
+      if (data.payment_status === 'paid') {
         setSaved(true);
         setPaymentStatus('success');
         setChecking(false);
