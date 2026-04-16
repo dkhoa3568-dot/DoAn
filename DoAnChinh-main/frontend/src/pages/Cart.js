@@ -13,9 +13,16 @@ export default function Cart() {
   const handleCheckout = async () => {
     try {
       const originUrl = window.location.origin;
+      const token = localStorage.getItem("token");
+
       const { data } = await axios.post(
         `${API_URL}/api/checkout`,
         { origin_url: originUrl },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
       window.location.href = data.url;
     } catch (error) {
