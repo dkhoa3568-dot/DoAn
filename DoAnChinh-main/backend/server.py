@@ -34,13 +34,14 @@ db = client[db_name]
 app = FastAPI()
 
 origins = [
-    "https://precious-banoffee-61d6dc.netlify.app"
+    "https://iphone-store26.netlify.app",
+    "http://localhost:3000"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://precious-banoffee-61ddc0.netlify.app"],
-    allow_credentials=True,    
+    allow_origins=origins,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -601,10 +602,33 @@ async def root():
     return {"message": "API is running 🚀"}
 
 @api_router.post("/checkout")
-async def checkout():
-    session_id = f"sess_{uuid.uuid4().hex[:8]}"
+async def checkout(user: dict = Depends(get_authenticated_user)):
+    cart_items = await db.cart_items.find({"user_id": user["user_id"]}).to_list(100)
+
+    if not cart_items:
+        raise HTTPException(status_code=400, detail="Cart empty")
+
+    total = sum(item["subtotal"] for item in cart_items)
+
+    order_id = f"order_{uuid.uuid4().hex[:10]}"
+
+    order = {
+        "order_id": order_id,
+        "user_id": user["user_id"],
+        "items": cart_items,
+        "total": total,
+        "status": "paid",  # giả lập thanh toán thành công
+        "created_at": datetime.now(timezone.utc)
+    }
+
+    # ✅ LƯU DB NGAY
+    await db.orders.insert_one(order)
+
+    # ❗ XÓA GIỎ HÀNG
+    await db.cart_items.delete_many({"user_id": user["user_id"]})
+
     return {
-        "url": f"https://doan-iphone.netlify.app/order-success?session_id={session_id}"
+        "url": f"https://doan-iphone.netlify.app/order-success?order_id={order_id}"
     }
 
 @api_router.get("/checkout/status/{session_id}")
